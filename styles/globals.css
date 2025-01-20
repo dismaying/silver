@@ -17,6 +17,42 @@ html {
   overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
 }
 
+.overlock-regular {
+  font-family: 'Overlock', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.overlock-bold {
+  font-family: 'Overlock', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.overlock-black {
+  font-family: 'Overlock', serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.overlock-regular-italic {
+  font-family: 'Overlock', serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.overlock-bold-italic {
+  font-family: 'Overlock', serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.overlock-black-italic {
+  font-family: 'Overlock', serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
 /* Mobile-friendly adjustments */
 @media (max-width: 768px) {
   body {
