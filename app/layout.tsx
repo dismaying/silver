@@ -10,7 +10,6 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        {/* Correct usage of crossOrigin */}
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
           rel='preconnect'
@@ -23,26 +22,23 @@ export default function RootLayout({
         />
       </head>
 
+      {/* Google Ads Script */}
       <Script
         async
         src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8198927067197530'
         crossOrigin='anonymous'
         strategy='lazyOnload'
       />
-      <body className='bg-gradient-to-br from-gray-900 via-purple-800 to-gray-900 text-gray-100 min-h-screen flex flex-col font-overlock'>
-        {/* Decorative Background */}
-        <div className="bg-[url('https://cdn.silverdagger.vip/silver-icon.png')] bg-cover bg-center flex-grow overflow-hidden">
-          {/* Header Section */}
+
+      <body className='bg-gradient-to-br from-gray-900 via-purple-800 to-gray-900 text-gray-100 min-h-screen flex flex-col'>
+        <div className="bg-[url('/silver.svg')] bg-cover bg-center flex-grow">
+          {/* Header */}
           <header className='flex justify-between items-center px-8 py-4 bg-black/70 backdrop-blur-sm'>
-            {/* Logo or Brand Name as a clickable link */}
-            <Link
-              href='/'
-              className='text-xl font-bold text-purple-400 hover:text-purple-500 transition'
-            >
+            <Link href='/' className='text-lg font-bold'>
               Silver Dagger
             </Link>
-            <nav>
-              <ul className='flex space-x-6'>
+            <nav aria-label='Main navigation'>
+              <ul className='flex space-x-4'>
                 <li>
                   <Link
                     href='/'
@@ -62,10 +58,11 @@ export default function RootLayout({
               </ul>
             </nav>
           </header>
+
           <main className='px-8 py-16'>{children}</main>
         </div>
 
-        {/* Footer Section */}
+        {/* Footer */}
         <footer className='flex flex-col justify-center items-center py-6 bg-black/70 backdrop-blur-sm'>
           <div className='text-center'>
             <p className='text-sm text-gray-400'>
