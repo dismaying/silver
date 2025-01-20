@@ -5,23 +5,58 @@ import { useState, useEffect } from 'react';
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [
-    'https://cdn.ayo.so/final/5ba48ed6-b25d-453c-b2f5-647728c3ca41/95b357f2-03d3-43f6-85d9-e860d5c10226/064f2f06-969f-45ca-974a-9a33fb8b2251.webp',
-    'https://cdn.ayo.so/final/5ba48ed6-b25d-453c-b2f5-647728c3ca41/b6a55af0-f45f-4959-b78c-b47039ac21ae/69a58ef8-dab6-4a77-bea1-9f121945323d.webp',
-    'https://cdn.ayo.so/final/5ba48ed6-b25d-453c-b2f5-647728c3ca41/99995447-1aa4-444d-8c26-5fd64730ea98/3ee72fe7-17ea-4122-ad57-6445d16ebd58.webp',
-    'https://cdn.ayo.so/final/5ba48ed6-b25d-453c-b2f5-647728c3ca41/5a6e002d-d368-4fac-a077-ab332df3410c/b49a0036-44bd-4281-ae77-fe12a15013fc.webp',
+    'https://cdn.silverdagger.vip/IMG_5060.webp',
+    'https://cdn.silverdagger.vip/IMG_5209.webp',
+    'https://cdn.silverdagger.vip/IMG_5282.webp',
+    'https://cdn.silverdagger.vip/IMG_5312.webp',
+    'https://cdn.silverdagger.vip/IMG_5313.webp',
+    'https://cdn.silverdagger.vip/IMG_5389.webp',
+    'https://cdn.silverdagger.vip/IMG_5401.webp',
+    'https://cdn.silverdagger.vip/IMG_7211.webp',
+    'https://cdn.silverdagger.vip/IMG_8302.webp',
+    'https://cdn.silverdagger.vip/IMG_8639.webp',
+    'https://cdn.silverdagger.vip/IMG_8755.webp',
+    'https://cdn.silverdagger.vip/IMG_9077.webp',
+    'https://cdn.silverdagger.vip/IMG_9350.webp',
+    'https://cdn.silverdagger.vip/phonto.webp',
+    'https://cdn.silverdagger.vip/phonto2.webp',
+    'https://cdn.silverdagger.vip/silver-3.webp',
+    'https://cdn.silverdagger.vip/silver-4.webp',
+    'https://cdn.silverdagger.vip/silver-5.webp',
+    'https://cdn.silverdagger.vip/silver-6.webp',
   ];
+
+  const slideDuration = 5000; // Time for each slide in ms
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-    }, 5000); // Change slide every 5 seconds
+    }, slideDuration);
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // Handle keyboard navigation for slides
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowRight') {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    } else if (e.key === 'ArrowLeft') {
+      setCurrentSlide(
+        (prevSlide) => (prevSlide - 1 + images.length) % images.length
+      );
+    }
+  };
+
   return (
-    <section className='relative bg-gradient-to-br from-purple-700 via-black to-purple-900 text-gray-100 min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden'>
+    <section
+      className='relative bg-gradient-to-br from-purple-700 via-black to-purple-900 text-gray-100 min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden'
+      onKeyDown={handleKeyDown} // Enable keyboard navigation
+      tabIndex={0} // Make the section focusable
+    >
       {/* Background Image Slideshow */}
-      <div className='absolute inset-0 z-0'>
+      <div
+        className='absolute inset-0 z-0'
+        onContextMenu={(e) => e.preventDefault()} // Disable right-click on images
+      >
         {images.map((image, index) => (
           <div
             key={index}
@@ -32,19 +67,12 @@ export default function HomePage() {
             }`}
             style={{
               backgroundImage: `url(${image})`,
-              pointerEvents: 'none', // Disable interaction with the image
-              filter: 'brightness(0.5)', // Fade the image slightly for readability
-              backgroundBlendMode: 'darken',
+              pointerEvents: 'none', // Prevent interactions
+              animation: currentSlide === index ? 'fadeIn 2s ease-in-out' : '',
             }}
           ></div>
         ))}
       </div>
-
-      {/* Disable Right-Click */}
-      <div
-        className='absolute inset-0 z-0'
-        onContextMenu={(e) => e.preventDefault()} // Prevent context menu on right-click
-      ></div>
 
       {/* Overlay for readability */}
       <div className='absolute inset-0 bg-black/50 z-10'></div>

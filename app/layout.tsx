@@ -1,5 +1,6 @@
 import './../styles/globals.css';
 import Link from 'next/link';
+import Script from 'next/script';
 
 export default function RootLayout({
   children,
@@ -8,8 +9,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <Script
+        async
+        src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8198927067197530'
+        crossOrigin='anonymous'
+        strategy='lazyOnload'
+      />
       <body className='bg-gradient-to-br from-gray-900 via-purple-800 to-gray-900 text-gray-100 min-h-screen flex flex-col'>
-        <div className="bg-[url('/pattern.svg')] bg-cover bg-center flex-grow">
+        <div className="bg-[url('/silver.svg')] bg-cover bg-center flex-grow">
           <header className='flex justify-between items-center px-8 py-4 bg-black/70 backdrop-blur-sm'>
             {/* Silver Dagger as a clickable button */}
             <Link href='/'>Silver Dagger</Link>

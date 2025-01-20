@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section className='relative text-center py-24 px-6 bg-gradient-to-br from-purple-700 via-purple-800 to-gray-900 text-gray-100 overflow-hidden'>
       {/* Decorative Background */}
-      <div className="absolute inset-0 z-0 bg-opacity-40 bg-[url('/hero-pattern.svg')] bg-cover bg-center"></div>
+      <div className="absolute inset-0 z-0 bg-opacity-40 bg-[url('/silver.svg')] bg-cover bg-center"></div>
 
       <div className='relative z-10 max-w-4xl mx-auto'>
         <h1 className='text-5xl font-extrabold mb-6 leading-tight'>
