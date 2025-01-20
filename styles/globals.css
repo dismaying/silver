@@ -2,21 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset and global styles */
+/* Global Reset and Styles */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased; /* Improves font rendering on mobile */
+  -webkit-font-smoothing: antialiased; /* Improved font rendering on mobile */
   -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
+  overflow-x: hidden; /* Prevent unwanted horizontal scrolling */
 }
 
+/* Typography Styles for Overlock Font */
 .overlock-regular {
   font-family: 'Overlock', serif;
   font-weight: 400;
@@ -26,13 +27,11 @@ html {
 .overlock-bold {
   font-family: 'Overlock', serif;
   font-weight: 700;
-  font-style: normal;
 }
 
 .overlock-black {
   font-family: 'Overlock', serif;
   font-weight: 900;
-  font-style: normal;
 }
 
 .overlock-regular-italic {
@@ -53,10 +52,10 @@ html {
   font-style: italic;
 }
 
-/* Mobile-friendly adjustments */
+/* Mobile-Responsive Adjustments */
 @media (max-width: 768px) {
   body {
-    padding: 0 1rem; /* Add some padding for mobile screens */
+    padding: 0 1rem; /* Comfortable padding for small screens */
   }
 
   h1,
@@ -65,49 +64,63 @@ html {
   h4,
   h5,
   h6 {
-    line-height: 1.2; /* Tighter line heights for headings */
+    line-height: 1.2; /* Optimize heading line spacing */
     word-wrap: break-word; /* Prevent text overflow */
   }
 
   img {
-    max-width: 100%; /* Ensure images are responsive */
+    max-width: 100%; /* Ensure all images are responsive */
     height: auto;
   }
 
   button {
-    padding: 0.75rem 1.25rem; /* Better spacing for touch screens */
-    font-size: 1rem; /* Readable button text on smaller screens */
+    padding: 0.75rem 1.25rem; /* Improve tap target size */
+    font-size: 1rem; /* Ensure button text is legible */
   }
 }
 
-/* Add Tailwind container classes for dynamic layout on desktop and mobile */
+/* Dynamic Container Classes with Tailwind */
 @layer components {
   .container {
-    @apply mx-auto px-4; /* Ensure proper centering with padding */
+    @apply mx-auto px-4; /* Center with padding for all screens */
     max-width: 100%;
   }
 
   @media (min-width: 640px) {
     .container {
-      max-width: 640px;
+      max-width: 640px; /* Set container width for small screens */
     }
   }
 
   @media (min-width: 768px) {
     .container {
-      max-width: 768px;
+      max-width: 768px; /* Adjust for medium screens */
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      max-width: 1024px;
+      max-width: 1024px; /* Adjust for large screens */
     }
   }
 
   @media (min-width: 1280px) {
     .container {
-      max-width: 1280px;
+      max-width: 1280px; /* Adjust for extra-large screens */
     }
+  }
+}
+
+/* Additional Global Customizations */
+@layer base {
+  /* Ensure smoother UI transitions globally */
+  * {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Add focus styles for better accessibility */
+  :focus {
+    outline: 2px solid #9333ea; /* Purple outline for focus */
+    outline-offset: 2px;
   }
 }

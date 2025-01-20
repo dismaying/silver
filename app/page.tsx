@@ -28,6 +28,7 @@ export default function HomePage() {
 
   const slideDuration = 5000; // Time for each slide in ms
 
+  // Automatic Slideshow
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
@@ -35,23 +36,24 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Handle keyboard navigation for slides
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowRight') {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-    } else if (e.key === 'ArrowLeft') {
-      setCurrentSlide(
-        (prevSlide) => (prevSlide - 1 + images.length) % images.length
-      );
-    }
-  };
+  // Keyboard Navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+      } else if (e.key === 'ArrowLeft') {
+        setCurrentSlide(
+          (prevSlide) => (prevSlide - 1 + images.length) % images.length
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [images.length]);
 
   return (
-    <section
-      className='relative bg-gradient-to-br from-purple-700 via-black to-purple-900 text-gray-100 min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden'
-      onKeyDown={handleKeyDown} // Enable keyboard navigation
-      tabIndex={0} // Make the section focusable
-    >
+    <section className='relative bg-gradient-to-br from-purple-700 via-black to-purple-900 text-gray-100 min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden'>
       {/* Background Image Slideshow */}
       <div
         className='absolute inset-0 z-0'
@@ -60,15 +62,13 @@ export default function HomePage() {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 transform ${
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
               currentSlide === index
                 ? 'opacity-100 scale-100'
                 : 'opacity-0 scale-105'
             }`}
             style={{
               backgroundImage: `url(${image})`,
-              pointerEvents: 'none', // Prevent interactions
-              animation: currentSlide === index ? 'fadeIn 2s ease-in-out' : '',
             }}
           ></div>
         ))}
@@ -101,32 +101,31 @@ export default function HomePage() {
 
         {/* Dynamic Info Containers */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full max-w-6xl'>
-          {/* Example Cards */}
           {[
             {
               title: 'Deep Connection',
               description:
-                'Build a unique dynamic where trust, respect, and exploration are at the forefront. Daddy Silver Dagger emphasizes meaningful connections and genuine experiences. Let her seep in and begin to take control.',
+                'Build a unique dynamic where trust, respect, and exploration are at the forefront. Daddy Silver Dagger emphasizes meaningful connections and genuine experiences.',
             },
             {
               title: 'Submissive Training & Conditioning',
               description:
-                'Explore and evolve within a space designed to nurture both individuality and the dynamic. Daddy Silver Dagger will train and condition you to her desires and responses. You will grow not only as a submissive but as a person.',
+                'Explore and evolve within a space designed to nurture both individuality and the dynamic. Daddy Silver Dagger will train and condition you to her desires and responses.',
             },
             {
               title: 'Safety for Submissives',
               description:
-                "Daddy Silver Dagger is committed to providing a safe environment to all submissives. No matter what information is shared, Daddy's primary goal is to protect and nurture all dynamics as a first step.",
+                "Daddy Silver Dagger is committed to providing a safe environment to all submissives. No matter what information is shared, Daddy's primary goal is to protect and nurture all dynamics.",
             },
             {
               title: 'Erotic Destruction',
               description:
-                "In Daddy Silver Dagger's space, you will be given the opportunity to experience extreme bliss under her guidance. You will be broken down and rebuilt in her image. Spiraling down the rabbit hole is where you will find your true purpose beneath her.",
+                "In Daddy Silver Dagger's space, you will be given the opportunity to experience extreme bliss under her guidance. You will be broken down and rebuilt in her image.",
             },
             {
               title: 'Experiences',
               description:
-                'Daddy Silver Dagger offers a number of experiences such as livestreams, drains, premade content, custom content, video/audio calls. Daddy Silver Dagger is always just one message & send away from playing with you.',
+                'Daddy Silver Dagger offers a number of experiences such as livestreams, drains, premade content, custom content, video/audio calls.',
             },
             {
               title: 'Payment Security',

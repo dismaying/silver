@@ -19,12 +19,11 @@ export default function ApplicationPage() {
     birthday: '',
     message: '',
   });
-  const [feeAgreement, setFeeAgreement] = useState(false); // Tracks the "I understand" question
+  const [feeAgreement, setFeeAgreement] = useState(false);
   const [status, setStatus] = useState('');
   const [countdown, setCountdown] = useState(5);
-  const [formSubmitted, setFormSubmitted] = useState(false); // Tracks if the form has been submitted
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Handle countdown logic
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
@@ -32,7 +31,6 @@ export default function ApplicationPage() {
     }
   }, [countdown]);
 
-  // Handle form input changes
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -40,12 +38,10 @@ export default function ApplicationPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle fee agreement toggle
   const handleFeeAgreementChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFeeAgreement(e.target.value === 'Y');
   };
 
-  // Check if all required fields are filled
   const isFormValid = () => {
     return (
       formData.name &&
@@ -56,7 +52,6 @@ export default function ApplicationPage() {
     );
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('Submitting...');
@@ -70,7 +65,7 @@ export default function ApplicationPage() {
 
       if (response.ok) {
         setStatus('');
-        setFormSubmitted(true); // Hide the form and show payment link
+        setFormSubmitted(true);
         setFormData({
           name: '',
           pronouns: '',
@@ -98,13 +93,13 @@ export default function ApplicationPage() {
 
   return (
     <section className='relative flex items-center justify-center min-h-screen text-gray-300 overflow-hidden'>
-      {/* Animated Background */}
+      {}
       <div className='absolute inset-0 bg-gradient-to-br from-purple-700 via-black to-purple-900 animate-gradientMove'></div>
 
-      {/* Overlay */}
+      {}
       <div className='absolute inset-0 bg-black/40'></div>
 
-      {/* Main Content */}
+      {}
       <div className='relative z-10 w-full max-w-4xl px-4 py-8'>
         {!agreed ? (
           <div className='bg-purple-700 p-6 rounded-lg shadow-lg'>
@@ -163,7 +158,7 @@ export default function ApplicationPage() {
               onSubmit={handleSubmit}
               className='bg-black/70 p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6'
             >
-              {/* Form Fields */}
+              {}
               <div>
                 <label
                   htmlFor='name'
@@ -181,7 +176,7 @@ export default function ApplicationPage() {
                   required
                 />
               </div>
-              {/* Pronouns */}
+              {}
               <div>
                 <label
                   htmlFor='pronouns'
@@ -318,7 +313,7 @@ export default function ApplicationPage() {
                 />
               </div>
 
-              {/* Weekly Budget */}
+              {}
               <div>
                 <label
                   htmlFor='weeklybudget'
